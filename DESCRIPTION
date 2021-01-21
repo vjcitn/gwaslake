@@ -18,7 +18,8 @@ Depends:
 Suggests: 
     knitr,
     rmarkdown,
-    pkgdown
+    pkgdown,
+    BiocStyle
 Imports:
     ggrepel,
     gwasglue,
