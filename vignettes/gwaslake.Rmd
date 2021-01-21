@@ -1,0 +1,24 @@
+---
+title: "gwaslake: exploring the MRC GWAS API and data/software ecosystem with Bioconductor"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{gwaslake: exploring the MRC GWAS API and data/software ecosystem with Bioconductor}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+We are indebted to the MRC Integrative Epidemiology Unit for
+producing the infrastructure leading to the following schematic:
+
+![mrc eco](mrcieuglue.png)
+
+
