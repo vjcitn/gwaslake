@@ -22,10 +22,12 @@ Suggests:
 Imports:
     ggrepel,
     gwasglue,
-    gwasvcf
+    gwasvcf,
+    finemapr
 Remotes:
     vjcitn/gwasglue,
-    vjcitn/gwasvcf
+    vjcitn/gwasvcf,
+    vjcitn/finemapr
 URL: https://vjcitn.github.io/gwaslake/
 BugReports: https://github.com/vjcitn/gwaslake/issues/new/choose
 VignetteBuilder: knitr
