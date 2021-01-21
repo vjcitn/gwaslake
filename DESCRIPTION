@@ -1,16 +1,13 @@
-Package: BuildABiocWorkshop
-Title: Bioconductor Workshop Template and Github Actions
-Version: 0.9.0
+Package: gwaslake
+Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor.
+Version: 0.0.0
 Authors@R: 
-    person(given = "Sean",
-           family = "Davis",
+    person(given = "Vince",
+           family = "Carey",
            role = c("aut", "cre"),
-           email = "seandavi@gmail.com",
-           comment = c(ORCID = "your-orc-id-here"))
-Description: This package serves as a template for using github actions to 
-    prepare a Bioconductor Workshop package for use. In particular,
-    a pkgdown website and docker image are generated based on workflow 
-    settings. 
+           email = "stvjc@channing.harvard.edu",
+           comment = c(ORCID = "0000-0003-4046-0063"))
+Description: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -22,7 +19,13 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown
-URL: https://seandavi.github.io/BuildABiocWorkshop/
-BugReports: https://github.com/seandavi/BuildABiocWorkshop/issues/new/choose
+Imports:
+    gwasglue,
+    gwasvcf
+Remotes:
+    vjcitn/gwasglue,
+    vjcitn/gwasvcf
+URL: https://vjcitn.github.io/gwaslake/
+BugReports: https://github.com/vjcitn/gwaslake/issues/new/choose
 VignetteBuilder: knitr
-DockerImage: seandavi/buildabiocworkshop:latest
+DockerImage: vjcitn/gwaslake:latest
