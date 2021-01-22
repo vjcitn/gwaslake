@@ -54,7 +54,6 @@ jobs:
         shell: Rscript {0}
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
 
       - name: Build pkgdown
         run: |
