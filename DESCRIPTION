@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor.
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: 
     person(given = "Vince",
            family = "Carey",
@@ -22,11 +22,10 @@ Suggests:
     BiocStyle
 Imports:
     ggrepel,
-    gwasglue,
     gwasvcf,
     finemapr
 Remotes:
-    vjcitn/gwasglue,
+    mrcieu/ieugwasr,
     vjcitn/gwasvcf,
     vjcitn/finemapr
 URL: https://vjcitn.github.io/gwaslake/

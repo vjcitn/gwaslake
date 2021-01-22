@@ -7,7 +7,7 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    container: bioconductor/bioconductor_docker:devel
+    container: vjcitn/bioc_staged_rel:0.0.2
     steps:
       - uses: actions/checkout@v1
 
