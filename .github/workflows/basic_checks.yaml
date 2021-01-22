@@ -49,6 +49,16 @@ jobs:
         run: rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
       
+      - name: Pull request labeler
+        on:
+        - pull_request
+        jobs:
+          triage:
+            runs-on: ubuntu-latest
+            steps:
+            - uses: actions/labeler@v2
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build pkgdown
         run: |
