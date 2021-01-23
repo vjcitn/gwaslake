@@ -19,7 +19,8 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown,
-    BiocStyle
+    BiocStyle,
+    ieugwasr
 Imports:
     ggrepel,
     gwasvcf,
