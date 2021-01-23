@@ -21,4 +21,76 @@ producing the infrastructure leading to the following schematic:
 
 ![mrc eco](mrcieuglue.png)
 
+## Caveat about software component maintenance
 
+The packages identified in the ecosystem are mostly
+accessed through github repositories.  The interdependencies
+and idiosyncrasies of using Remotes in DESCRIPTION made it
+difficult to produce a container image, so I have forked several
+of the packages identified in the schematic, to tweak the
+DESCRIPTIONs.  I have filed some pull requests but have not
+heard back.  I will try to keep the DESCRIPTION for this workshop
+package current, minimizing use of forks, and hope individual
+package maintainers will get in touch.
+
+## Basic goals
+
+- To understand the resources underlying the IEU GWAS API.
+- To explore genetic analyses supported by the gwasglue
+infrastructure.
+
+# The API viewed through ieugwasr
+
+We'll start by listing the functions available in the `ieugwasr` package.
+
+```{r chk1}
+suppressPackageStartupMessages({
+library(ieugwasr)
+library(dplyr)
+library(DT)
+})
+ls("package:ieugwasr")
+```
+
+The pkgdown site for `ieugwasr` includes a reference listing, visible [here](https://mrcieu.github.io/ieugwasr/reference/index.html).
+
+Let's try the gwasinfo command.  
+
+```{r lkgwinf, cache=TRUE}
+gwi = gwasinfo()
+gwi
+```
+
+## Diseases available
+
+```{r lkdis}
+ table(gwi$category)
+distab = gwi %>% filter(category=="Disease")
+distab %>% 
+   group_by(trait) %>% summarise(n=n()) %>% arrange(desc(n))
+```
+
+A searchable table will be useful.
+```{r lkdt}
+datatable(as.data.frame(distab))
+```
+
+## GWAS hits and their annotation
+
+The [pkgdown document](https://mrcieu.github.io/ieugwasr/articles/guide.html) 
+on `ieugwasr` is highly informative.  We work through some examples here
+to verify functionality of our container.
+
+First, by using the searchable table above, we can obtain the study
+id for "Asthma": `ieu-a-44`.  We can then obtain the top "hits" for
+this trait (a p-value threshold can be specified; default is 5e-8).
+```{r lktop}
+asthtop = tophits("ieu-a-44")
+asthtop
+```
+Basic annotation on these hits can be obtained using
+either positions or rsids.
+```{r anno1}
+asthv = variants_rsid(asthtop$rsid)
+datatable(asthv)
+```
