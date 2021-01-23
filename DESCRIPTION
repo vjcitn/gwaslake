@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor.
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: 
     person(given = "Vince",
            family = "Carey",
@@ -14,7 +14,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
-    Biobase
+    Biobase, biomaRt
 Suggests: 
     knitr,
     rmarkdown,
@@ -26,6 +26,7 @@ Imports:
     gwasvcf,
     finemapr
 Remotes:
+    vjcitn/biomaRt,
     mrcieu/ieugwasr,
     vjcitn/gwasvcf,
     vjcitn/finemapr
