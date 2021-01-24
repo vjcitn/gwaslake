@@ -45,6 +45,7 @@ We'll start by listing the functions available in the `ieugwasr` package.
 
 ```{r chk1}
 suppressPackageStartupMessages({
+library(gwaslake)
 library(ieugwasr)
 library(dplyr)
 library(DT)
@@ -56,10 +57,19 @@ The pkgdown site for `ieugwasr` includes a reference listing, visible [here](htt
 
 Let's try the gwasinfo command.  
 
-```{r lkgwinf, cache=TRUE}
+```{r lkgwinf}
 gwi = gwasinfo()
 gwi
 ```
+
+That's a huge table.  We can get an overview by tabulating the 'batches' into which
+studies have been organized.
+
+```{r lkbat}
+gb = batches()
+datatable(gb)
+```
+
 
 ## Diseases available
 
@@ -94,3 +104,26 @@ either positions or rsids.
 asthv = variants_rsid(asthtop$rsid)
 datatable(asthv)
 ```
+
+## PheWAS/eQTL lookup
+
+Let's follow up our hit in GSDMB with a 'PheWAS'.
+The p-value threshold is indicated in documentation to be 0.00001.
+
+```{r doph}
+gdp = phewas("rs2290400")
+datatable(gdp)
+```
+
+A number of the traits are genes, and the findings come from
+eQTL studies.  Let's see where these genes are located.
+
+```{r lkuppheq}
+eqtab = gdp[grep("^eqtl", gdp$id),]
+eqtab = bind_sym(eqtab)
+table(eqtab$gchrom)
+```
+
+So there are 'trans' hits for our GSDMB-resident asthma SNP.
+
+
