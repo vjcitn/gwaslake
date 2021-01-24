@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   gwaslake: gwaslake.html
-last_built: 2021-01-23T19:37Z
+last_built: 2021-01-24T14:15Z
 urls:
   reference: https://vjcitn.github.io/gwaslake/reference
   article: https://vjcitn.github.io/gwaslake/articles
