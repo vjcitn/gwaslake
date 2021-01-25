@@ -11,3 +11,8 @@
 #' @examples
 #' head(little_eq)
 "little_eq"
+
+#' a UCSC liftOver chain
+#' @docType data
+#' @format chain
+"ch19to38"

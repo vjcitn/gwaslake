@@ -2,3 +2,4 @@
 
 export(bind_sym)
 export(ieutab_to_GRanges)
+export(ieutab_to_cravat)
