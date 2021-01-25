@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended — genes_v75 • gwaslake</title>
+<title>IEU tables conversion to GRanges — ieutab_to_GRanges • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="a data.frame of genes(EnsDb.Hsapiens.v75) with build appended — genes_v75" />
-<meta property="og:description" content="a data.frame of genes(EnsDb.Hsapiens.v75) with build appended" />
+<meta property="og:title" content="IEU tables conversion to GRanges — ieutab_to_GRanges" />
+<meta property="og:description" content="IEU tables conversion to GRanges" />
 
 
 
@@ -111,32 +111,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended</h1>
-    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>genes_v75.Rd</code></div>
+    <h1>IEU tables conversion to GRanges</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/variants.R'><code>R/variants.R</code></a></small>
+    <div class="hidden name"><code>ieutab_to_GRanges.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended</p>
+    <p>IEU tables conversion to GRanges</p>
     </div>
 
-    <pre class="usage"><span class='va'>genes_v75</span></pre>
+    <pre class="usage"><span class='fu'>ieutab_to_GRanges</span><span class='op'>(</span><span class='va'>ieutab</span>, build <span class='op'>=</span> <span class='st'>"GRCh37"</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>ieutab</th>
+      <td><p>data.frame-like entity as returned by e.g., variant_rsid, associations, phewas</p></td>
+    </tr>
+    <tr>
+      <th>build</th>
+      <td><p>character(1) defaults to "GRCh37"</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>data.frame</p>
+    <p>assumes SNP; renames 'pos' to 'position' if necessary</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>genes_v75</span>,<span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                 seqnames start   end width strand         gene_id  gene_name
-#&gt; ENSG00000223972        1 11869 14412  2544      + ENSG00000223972    DDX11L1
-#&gt; ENSG00000227232        1 14363 29806 15444      - ENSG00000227232     WASH7P
-#&gt; ENSG00000243485        1 29554 31109  1556      + ENSG00000243485 MIR1302-10
-#&gt;                 gene_biotype seq_coord_system     symbol     entrezid  build
-#&gt; ENSG00000223972   pseudogene       chromosome    DDX11L1 10028759.... GRCh37
-#&gt; ENSG00000227232   pseudogene       chromosome     WASH7P 10028717.... GRCh37
-#&gt; ENSG00000243485      lincRNA       chromosome MIR1302-10 10042291.... GRCh37</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"ieugwasr"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>ex</span> <span class='op'>=</span> <span class='fu'>ieugwasr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/ieugwasr/man/variants_rsid.html'>variants_rsid</a></span><span class='op'>(</span><span class='st'>"rs6060535"</span><span class='op'>)</span>
+<span class='fu'>ieutab_to_GRanges</span><span class='op'>(</span><span class='va'>ex</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: ieugwasr</span></div><div class='output co'>#&gt; <span class='message'>API: public: http://gwas-api.mrcieu.ac.uk/</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: GenomicRanges</span></div><div class='output co'>#&gt; GRanges object with 1 range and 24 metadata columns:
+#&gt;       seqnames    ranges strand |       query        name         chr  position
+#&gt;          &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;integer&gt;
+#&gt;   [1]       20  34235522      * |   rs6060535   rs6060535          20  34235522
+#&gt;          geneinfo         MUS          U5          U3         MSM         ASS
+#&gt;       &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;
+#&gt;   [1]  CPNE1:8904           .           .           .           .           .
+#&gt;               VLD         NSF      COMMON         PMC          PM          R5
+#&gt;       &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;
+#&gt;   [1]           .           .           1           1           1           .
+#&gt;                VC         TPA          R3         DSS dbSNPBuildID          OM
+#&gt;       &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt;  &lt;character&gt; &lt;character&gt;
+#&gt;   [1]           .           .           .           .            .           .
+#&gt;               INT         SYN
+#&gt;       &lt;character&gt; &lt;character&gt;
+#&gt;   [1]           1           .
+#&gt;   -------
+#&gt;   seqinfo: 1 sequence from GRCh37 genome; no seqlengths</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
