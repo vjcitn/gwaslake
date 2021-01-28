@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • gwaslake</title>
+<title>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies — browse_ieu • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies — browse_ieu" />
+<meta property="og:description" content="a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,18 +111,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/batchwork.R'><code>R/batchwork.R</code></a></small>
+    <div class="hidden name"><code>browse_ieu.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="gwaslake.html">gwaslake: exploring the MRC GWAS API and data/software ecosystem with Bioconductor</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies</p>
     </div>
+
+    <pre class="usage"><span class='fu'>browse_ieu</span><span class='op'>(</span>dat <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dat</th>
+      <td><p>a data.frame-like thing expected to be like the result of ieugwasr::gwasinfo(); if NULL,
+the output of gwasinfo() will be used</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>just invokes a shiny app at this point, no return</p>
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
