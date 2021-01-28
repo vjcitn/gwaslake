@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor
-Version: 0.0.8
+Version: 0.0.9
 Authors@R: 
     person(given = "Vince",
            family = "Carey",
@@ -21,19 +21,21 @@ Suggests:
     rmarkdown,
     pkgdown,
     BiocStyle,
-    ieugwasr,
     GenomeInfoDb,
     S4Vectors,
     GenomicRanges,
     IRanges,
-    DT,
-    dplyr,
-    rtracklayer
+    rtracklayer,
+    testthat
 Imports:
     ggrepel,
     gwasvcf,
     finemapr,
-    tibble
+    tibble,
+    DT,
+    dplyr,
+    ieugwasr,
+    shiny
 Remotes:
     grimbough/biomaRt@3_12_testing,
     mrcieu/ieugwasr,
