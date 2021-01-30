@@ -13,4 +13,7 @@ ch19to38
 \description{
 a UCSC liftOver chain
 }
+\examples{
+ch19to38
+}
 \keyword{datasets}

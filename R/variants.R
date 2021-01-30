@@ -23,3 +23,16 @@ ieutab_to_GRanges = function(ieutab, build="GRCh37") {
  GenomeInfoDb::genome(tmp) = build
  tmp
 }
+
+#' create a "chr:start-end" string for associations()
+#' @param genesym character(1)
+#' @param radius numeric(1) flanking range, defaults to zero
+#' @param addr_src data.frame defaults to `genes_v75`
+#' @examples
+#' genesym_to_string("YY1")
+#' @export
+genesym_to_string = function(genesym, radius=0, addr_src = gwaslake::genes_v75) {
+  tmp = addr_src[which(addr_src$gene_name==genesym),]
+  if (nrow(tmp)!=1) stop("no unique address available")
+  paste0(tmp$seqnames, ":", tmp$start, "-", tmp$end)
+}

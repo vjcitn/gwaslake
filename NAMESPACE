@@ -2,6 +2,7 @@
 
 export(bind_sym)
 export(browse_ieu)
+export(genesym_to_string)
 export(ieutab_to_GRanges)
 export(ieutab_to_cravat)
 import(shiny, except=c(dataTableOutput, renderDataTable))

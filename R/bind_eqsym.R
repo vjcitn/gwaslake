@@ -8,6 +8,7 @@
 #' @param output_symvbl character(1) name to be used for symbol in output data.frame, defaults to `symbol`
 #' @param output_chromvbl character(1) name to be used for chromosome in output data.frame, defaults to `gchrom`
 #' @examples
+#' head(little_eq)
 #' head(bind_sym(little_eq))
 #' @export
 bind_sym = function( dflike, gene_resource = genes_v75, ensgvbl = "trait",

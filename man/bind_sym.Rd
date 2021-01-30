@@ -29,5 +29,6 @@ defaulting to \code{gwaslake::genes_v75}}
 helper for converting ENSG to symbols, cbinding symbol and chromosome name for the genes to the input data.frame-like entity
 }
 \examples{
+head(little_eq)
 head(bind_sym(little_eq))
 }
