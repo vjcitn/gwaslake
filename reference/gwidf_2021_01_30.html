@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>a UCSC liftOver chain — ch19to38 • gwaslake</title>
+<title>a snapshot of output of ieugwasr::gwasinfo() — gwidf_2021_01_30 • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="a UCSC liftOver chain — ch19to38" />
-<meta property="og:description" content="a UCSC liftOver chain" />
+<meta property="og:title" content="a snapshot of output of ieugwasr::gwasinfo() — gwidf_2021_01_30" />
+<meta property="og:description" content="a snapshot of output of ieugwasr::gwasinfo()" />
 
 
 
@@ -111,29 +111,78 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>a UCSC liftOver chain</h1>
+    <h1>a snapshot of output of ieugwasr::gwasinfo()</h1>
     <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>ch19to38.Rd</code></div>
+    <div class="hidden name"><code>gwidf_2021_01_30.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>a UCSC liftOver chain</p>
+    <p>a snapshot of output of ieugwasr::gwasinfo()</p>
     </div>
 
-    <pre class="usage"><span class='va'>ch19to38</span></pre>
+    <pre class="usage"><span class='va'>gwidf_2021_01_30</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>chain</p>
+    <p>data.frame</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Includes 'batchcode' computed by code commented out in example</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>ch19to38</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: rtracklayer</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘S4Vectors’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    expand.grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: IRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomeInfoDb</span></div><div class='output co'>#&gt; Chain of length 25
-#&gt; names(25): chr22 chr21 chr19 chr20 chr18 chrY ... chr6 chr5 chr4 chr3 chr2 chr1</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># batchcode = strsplit(gwidf_2021_01_30$id, "-")</span>
+<span class='co'># batchcode = sapply(batchcode,function(x) paste0(x[1], "-", x[2]))</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>gwidf_2021_01_30</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                       id                          trait     coverage
+#&gt; 1               ieu-b-73      Alcoholic drinks per week whole genome
+#&gt; 2               ieu-b-72 Urinary sodium-potassium ratio whole genome
+#&gt; 3 eqtl-a-ENSG00000267355                ENSG00000267355         &lt;NA&gt;
+#&gt; 4 eqtl-a-ENSG00000119707                ENSG00000119707         &lt;NA&gt;
+#&gt; 5 eqtl-a-ENSG00000145632                ENSG00000145632         &lt;NA&gt;
+#&gt; 6 eqtl-a-ENSG00000144791                ENSG00000144791         &lt;NA&gt;
+#&gt;   imputation_panel group_name year mr  author
+#&gt; 1              HRC     public 2019  1  Liu, M
+#&gt; 2             &lt;NA&gt;     public 2020  1 Zanetti
+#&gt; 3             &lt;NA&gt;     public 2018  1  Vosa U
+#&gt; 4             &lt;NA&gt;     public 2018  1  Vosa U
+#&gt; 5             &lt;NA&gt;     public 2018  1  Vosa U
+#&gt; 6             &lt;NA&gt;     public 2018  1  Vosa U
+#&gt;                                                   consortium               sex
+#&gt; 1 GWAS and Sequencing Consortium of Alcohol and Nicotine use Males and Females
+#&gt; 2                                                       &lt;NA&gt; Males and Females
+#&gt; 3                                                         NA Males and Females
+#&gt; 4                                                         NA Males and Females
+#&gt; 5                                                         NA Males and Females
+#&gt; 6                                                         NA Males and Females
+#&gt;                  qc_prior_to_upload     pmid population sample_size     nsnp
+#&gt; 1 mapped rsids to genomic position  30643251   European      335394 11887865
+#&gt; 2                              &lt;NA&gt; 32008434   European      326938 19420026
+#&gt; 3                              &lt;NA&gt;       NA   European        4677    18842
+#&gt; 4                              &lt;NA&gt;       NA   European       30935    19455
+#&gt; 5                              &lt;NA&gt;       NA   European       31684    19623
+#&gt; 6                              &lt;NA&gt;       NA   European       31470    18827
+#&gt;         build                                    study_design
+#&gt; 1 HG19/GRCh37 Meta-analysis of cohort/cross-sectional studies
+#&gt; 2 HG19/GRCh37                    Cohort/cross-sectional study
+#&gt; 3 HG19/GRCh37                                            &lt;NA&gt;
+#&gt; 4 HG19/GRCh37                                            &lt;NA&gt;
+#&gt; 5 HG19/GRCh37                                            &lt;NA&gt;
+#&gt; 6 HG19/GRCh37                                            &lt;NA&gt;
+#&gt;             covariates   category subcategory                               doi
+#&gt; 1         ancestry PCs Continuous Behavioural         10.1038/s41588-018-0307-5
+#&gt; 2 age, sex, batch, PCs Continuous   Biomarker 10.1161/hypertensionaha.119.14028
+#&gt; 3                 &lt;NA&gt;         NA          NA                              &lt;NA&gt;
+#&gt; 4                 &lt;NA&gt;         NA          NA                              &lt;NA&gt;
+#&gt; 5                 &lt;NA&gt;         NA          NA                              &lt;NA&gt;
+#&gt; 6                 &lt;NA&gt;         NA          NA                              &lt;NA&gt;
+#&gt;   note priority unit ontology sd ncase ncontrol batchcode
+#&gt; 1 &lt;NA&gt;       NA &lt;NA&gt;     &lt;NA&gt; NA    NA       NA     ieu-b
+#&gt; 2 &lt;NA&gt;       NA &lt;NA&gt;     &lt;NA&gt; NA    NA       NA     ieu-b
+#&gt; 3   NA        0   NA       NA NA    NA       NA    eqtl-a
+#&gt; 4   NA        0   NA       NA NA    NA       NA    eqtl-a
+#&gt; 5   NA        0   NA       NA NA    NA       NA    eqtl-a
+#&gt; 6   NA        0   NA       NA NA    NA       NA    eqtl-a</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

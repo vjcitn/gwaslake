@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>a UCSC liftOver chain — ch19to38 • gwaslake</title>
+<title>create a "chr:start-end" string for associations() — genesym_to_string • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="a UCSC liftOver chain — ch19to38" />
-<meta property="og:description" content="a UCSC liftOver chain" />
+<meta property="og:title" content="create a "chr:start-end" string for associations() — genesym_to_string" />
+<meta property="og:description" content="create a &quot;chr:start-end&quot; string for associations()" />
 
 
 
@@ -111,29 +111,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>a UCSC liftOver chain</h1>
-    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>ch19to38.Rd</code></div>
+    <h1>create a "chr:start-end" string for associations()</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/variants.R'><code>R/variants.R</code></a></small>
+    <div class="hidden name"><code>genesym_to_string.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>a UCSC liftOver chain</p>
+    <p>create a "chr:start-end" string for associations()</p>
     </div>
 
-    <pre class="usage"><span class='va'>ch19to38</span></pre>
+    <pre class="usage"><span class='fu'>genesym_to_string</span><span class='op'>(</span><span class='va'>genesym</span>, radius <span class='op'>=</span> <span class='fl'>0</span>, addr_src <span class='op'>=</span> <span class='fu'>gwaslake</span><span class='fu'>::</span><span class='va'><a href='genes_v75.html'>genes_v75</a></span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>genesym</th>
+      <td><p>character(1)</p></td>
+    </tr>
+    <tr>
+      <th>radius</th>
+      <td><p>numeric(1) flanking range, defaults to zero</p></td>
+    </tr>
+    <tr>
+      <th>addr_src</th>
+      <td><p>data.frame defaults to <code>genes_v75</code></p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>chain</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>ch19to38</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: rtracklayer</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘S4Vectors’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    expand.grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: IRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomeInfoDb</span></div><div class='output co'>#&gt; Chain of length 25
-#&gt; names(25): chr22 chr21 chr19 chr20 chr18 chrY ... chr6 chr5 chr4 chr3 chr2 chr1</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>genesym_to_string</span><span class='op'>(</span><span class='st'>"YY1"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "14:100704635-100749129"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
