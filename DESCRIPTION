@@ -15,8 +15,9 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
-    R (>= 4.0), Biobase, biomaRt
+    R (>= 4.0)
 Suggests: 
+    tibble,
     knitr,
     rmarkdown,
     pkgdown,
@@ -26,18 +27,18 @@ Suggests:
     GenomicRanges,
     IRanges,
     rtracklayer,
-    testthat
-Imports:
+    finemapr,
     ggrepel,
     gwasvcf,
-    finemapr,
-    tibble,
+    biomaRt,
+    testthat
+Imports:
     DT,
     dplyr,
     ieugwasr,
-    shiny
+    shiny,
+    ggplot2
 Remotes:
-    grimbough/biomaRt@3_12_testing,
     mrcieu/ieugwasr,
     vjcitn/gwasvcf,
     vjcitn/finemapr

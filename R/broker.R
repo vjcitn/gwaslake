@@ -37,7 +37,7 @@ ieutab_to_cravat = function(ieutab, chain=NULL, genome=NULL) {
     tmp = GenomicRanges::GRanges(makeUCSC(ieutab$chr), IRanges::IRanges(ieutab$position, width=1),
          rsid=ieutab$rsid, trait=ieutab$trait)
     tmp = unlist(rtracklayer::liftOver(tmp, chain))
-    w = width(tmp)
+    w = GenomicRanges::width(tmp)
     if (any(w>1)) tmp = tmp[-which(w>1)]
     tmp = as.data.frame(tmp)
     ieutab = merge(ieutab, tmp, by=c("rsid", "trait"))
