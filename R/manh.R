@@ -1,4 +1,6 @@
 #' produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region
+#' @importFrom ieugwasr associations
+#' @importFrom  ggplot2 finemapr ggrepel gwasvcf tibble ggplot
 #' @param studyID character(1) id of study in ieugwasr::gwasinfo() catalog, defaults to "ubm-a-524", which is
 #' a study described in Elliott et al Nature October 2018
 #' @param symbol a gene symbol (to be used with `genesym_to_string`, implicitly); if absent, chromosome, start and end must be supplied, defaults to 'BCAN'
@@ -24,4 +26,13 @@ manhattanPlot = function (studyID="ubm-a-524", symbol = "BCAN", start = NULL, st
         as.character(as.numeric(stop)+radius), sep = "-"), sep = ":")
     mplot = ieugwasr::associations(location, studyID)
     ggplot2::ggplot(mplot, ggplot2::aes(x = position, y = -log10(p))) + ggplot2::geom_point()
+}
+#` A sub function used by manhattanPlot to split up the results from the genesym_to_string function. The function returns a vector of three variables: start, end, and chromosome
+
+strsplitter = function(x) {
+    tmp = strsplit(x, ":")
+    chr = tmp[[1]][1]
+    chr
+    tmp = strsplit(tmp[[1]][2], "-")[[1]]
+    c(chr=chr, start=tmp[1], end=tmp[2])
 }
