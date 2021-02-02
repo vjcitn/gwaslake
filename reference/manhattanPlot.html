@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • gwaslake</title>
+<title>produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region — manhattanPlot • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region — manhattanPlot" />
+<meta property="og:description" content="produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,96 +109,61 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/manh.R'><code>R/manh.R</code></a></small>
+    <div class="hidden name"><code>manhattanPlot.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>manhattanPlot</span><span class='op'>(</span>
+  studyID <span class='op'>=</span> <span class='st'>"ubm-a-524"</span>,
+  symbol <span class='op'>=</span> <span class='st'>"BCAN"</span>,
+  start <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stop <span class='op'>=</span> <span class='cn'>NULL</span>,
+  chromosome <span class='op'>=</span> <span class='cn'>NULL</span>,
+  radius <span class='op'>=</span> <span class='fl'>0</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="bind_sym.html">bind_sym()</a></code> </p>
-        </td>
-        <td><p>helper for converting ENSG to symbols, cbinding symbol and chromosome name for the genes to the input data.frame-like entity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="browse_ieu.html">browse_ieu()</a></code> </p>
-        </td>
-        <td><p>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ch19to38.html">ch19to38</a></code> </p>
-        </td>
-        <td><p>a UCSC liftOver chain</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="genes_v75.html">genes_v75</a></code> </p>
-        </td>
-        <td><p>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="genesym_to_string.html">genesym_to_string()</a></code> </p>
-        </td>
-        <td><p>create a "chr:start-end" string for associations()</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gwidf_2021_01_30.html">gwidf_2021_01_30</a></code> </p>
-        </td>
-        <td><p>a snapshot of output of ieugwasr::gwasinfo()</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ieutab_to_GRanges.html">ieutab_to_GRanges()</a></code> </p>
-        </td>
-        <td><p>IEU tables conversion to GRanges</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ieutab_to_cravat.html">ieutab_to_cravat()</a></code> </p>
-        </td>
-        <td><p>format the variant location, content and identity information from MRC IEU API tables for OpenCRAVAT</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="little_eq.html">little_eq</a></code> </p>
-        </td>
-        <td><p>a data.frame of eQTL results for testing</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="manhattanPlot.html">manhattanPlot()</a></code> </p>
-        </td>
-        <td><p>produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>studyID</th>
+      <td><p>character(1) id of study in ieugwasr::gwasinfo() catalog, defaults to "ubm-a-524", which is
+a study described in Elliott et al Nature October 2018</p></td>
+    </tr>
+    <tr>
+      <th>symbol</th>
+      <td><p>a gene symbol (to be used with <code>genesym_to_string</code>, implicitly); if absent, chromosome, start and end must be supplied, defaults to 'BCAN'</p></td>
+    </tr>
+    <tr>
+      <th>start</th>
+      <td><p>chromosomal address to start region (will have radius subtracted if supplied)</p></td>
+    </tr>
+    <tr>
+      <th>stop</th>
+      <td><p>chromosomal address to end region (will have radius added if supplied)</p></td>
+    </tr>
+    <tr>
+      <th>chromosome</th>
+      <td><p>name of chromosome in Ensembl nomenclature (e.g., 1, 2, ...)</p></td>
+    </tr>
+    <tr>
+      <th>radius</th>
+      <td><p>numeric default to zero, specifies flanking region</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>manhattanPlot</span><span class='op'>(</span>radius<span class='op'>=</span><span class='fl'>500000</span><span class='op'>)</span>
+</div><div class='img'><img src='manhattanPlot-1.png' alt='' width='700' height='433' /></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
