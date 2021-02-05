@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor
-Version: 0.0.10
+Version: 0.0.11
 Authors@R: 
     person(given = "Vince",
            family = "Carey",
@@ -31,7 +31,8 @@ Suggests:
     ggrepel,
     gwasvcf,
     biomaRt,
-    testthat
+    testthat,
+    plotly
 Imports:
     DT,
     dplyr,

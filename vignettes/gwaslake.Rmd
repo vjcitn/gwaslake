@@ -46,6 +46,7 @@ We'll start by listing the functions available in the `ieugwasr` package.
 ```{r chk1}
 suppressPackageStartupMessages({
 library(gwaslake)
+library(plotly)
 library(ieugwasr)
 library(dplyr)
 library(DT)
@@ -73,6 +74,9 @@ datatable(gb)
 
 ## Diseases available
 
+A comprehensive view of phenotypes is challenging to assemble.
+The `category` field has a relevant value, but we'll want to explore
+further.
 ```{r lkdis}
  table(gwi$category)
 distab = gwi %>% filter(category=="Disease")
@@ -83,6 +87,17 @@ distab %>%
 A searchable table will be useful.
 ```{r lkdt}
 datatable(as.data.frame(distab))
+```
+
+## A visual survey displaying study sizes for selected outcomes
+
+The `survey_gwas` function plots number of cases versus number
+of controls for all studies in which the `phrases` argument
+matches the `trait` field, using `grep`.
+With plotly,
+we get an interactive graphic with additional data displayed on hover.
+```{r lksurv}
+ggplotly(survey_gwas(phrases=c("asthma", "asthmatic")))
 ```
 
 ## GWAS hits and their annotation
