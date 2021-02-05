@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies — browse_ieu • gwaslake</title>
+<title>plot sample size and other information about studies in IEU GWAS ecosystem — survey_gwas • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies — browse_ieu" />
-<meta property="og:description" content="a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies" />
+<meta property="og:title" content="plot sample size and other information about studies in IEU GWAS ecosystem — survey_gwas" />
+<meta property="og:description" content="plot sample size and other information about studies in IEU GWAS ecosystem" />
 
 
 
@@ -111,31 +111,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies</h1>
-    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/batchwork.R'><code>R/batchwork.R</code></a></small>
-    <div class="hidden name"><code>browse_ieu.Rd</code></div>
+    <h1>plot sample size and other information about studies in IEU GWAS ecosystem</h1>
+    <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/survey_gwas.R'><code>R/survey_gwas.R</code></a></small>
+    <div class="hidden name"><code>survey_gwas.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>a simple app supporting filtering and exploration of MRC IEU GWAS batches and associated studies</p>
+    <p>plot sample size and other information about studies in IEU GWAS ecosystem</p>
     </div>
 
-    <pre class="usage"><span class='fu'>browse_ieu</span><span class='op'>(</span>dat <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>survey_gwas</span><span class='op'>(</span>
+  <span class='va'>phrases</span>,
+  datasource <span class='op'>=</span> <span class='fu'>gwaslake</span><span class='fu'>::</span><span class='va'><a href='gwidf_2021_01_30.html'>gwidf_2021_01_30</a></span>,
+  title_pref <span class='op'>=</span> <span class='st'>"IEU GWAS"</span>,
+  title_text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sQuote.html'>sQuote</a></span><span class='op'>(</span><span class='va'>phrases</span><span class='op'>)</span>, collapse <span class='op'>=</span> <span class='st'>", "</span><span class='op'>)</span>,
+  xlab <span class='op'>=</span> <span class='st'>"N controls"</span>,
+  ylab <span class='op'>=</span> <span class='st'>"N cases"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dat</th>
-      <td><p>a data.frame-like thing expected to be like the result of ieugwasr::gwasinfo(); if NULL,
-the output of gwasinfo() will be used</p></td>
+      <th>phrases</th>
+      <td><p>character() vector to grep with ignore.case=TRUE in <code>trait</code> field, unique matching rows
+will be collected</p></td>
+    </tr>
+    <tr>
+      <th>datasource</th>
+      <td><p>data.frame with <code>trait</code> as a column, defaults to
+gwaslake::gwidf_2021_01_30; result of ieugwasr::gwasinfo() is intended input</p></td>
+    </tr>
+    <tr>
+      <th>title_pref</th>
+      <td><p>character(1) defaults to "IEU GWAS"</p></td>
+    </tr>
+    <tr>
+      <th>title_text</th>
+      <td><p>character(1) defaults to a paste of phrases with collapse=", "</p></td>
+    </tr>
+    <tr>
+      <th>xlab</th>
+      <td><p>character(1) x axis label defaults to "N controls"</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>character(1) x axis label defaults to "N cases"</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>passed to grep</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>just invokes a shiny app at this point, no return</p>
+    <p>returns ggplot, intended for ggplotly</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span>
+<span class='va'>sg</span> <span class='op'>=</span> <span class='fu'>survey_gwas</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"asthma"</span>, <span class='st'>"asthmatic"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+ <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>16</span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"plotly"</span><span class='op'>)</span>
+ <span class='fu'>plotly</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/plotly/man/ggplotly.html'>ggplotly</a></span><span class='op'>(</span><span class='va'>sg</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
