@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended — genes_v75 • gwaslake</title>
+<title>a subset of trait labels mapped to Disease Ontology — mapped_traits_demo • gwaslake</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="a data.frame of genes(EnsDb.Hsapiens.v75) with build appended — genes_v75" />
-<meta property="og:description" content="a data.frame of genes(EnsDb.Hsapiens.v75) with build appended" />
+<meta property="og:title" content="a subset of trait labels mapped to Disease Ontology — mapped_traits_demo" />
+<meta property="og:description" content="a subset of trait labels mapped to Disease Ontology" />
 
 
 
@@ -111,32 +111,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended</h1>
+    <h1>a subset of trait labels mapped to Disease Ontology</h1>
     <small class="dont-index">Source: <a href='https://github.com/vjcitn/gwaslake/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>genes_v75.Rd</code></div>
+    <div class="hidden name"><code>mapped_traits_demo.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>a data.frame of genes(EnsDb.Hsapiens.v75) with build appended</p>
+    <p>a subset of trait labels mapped to Disease Ontology</p>
     </div>
 
-    <pre class="usage"><span class='va'>genes_v75</span></pre>
+    <pre class="usage"><span class='va'>mapped_traits_demo</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>data.frame</p>
+    <p>named character vector</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Uses ontoProc from Bioc 3.12.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>genes_v75</span>,<span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                 seqnames start   end width strand         gene_id  gene_name
-#&gt; ENSG00000223972        1 11869 14412  2544      + ENSG00000223972    DDX11L1
-#&gt; ENSG00000227232        1 14363 29806 15444      - ENSG00000227232     WASH7P
-#&gt; ENSG00000243485        1 29554 31109  1556      + ENSG00000243485 MIR1302-10
-#&gt;                 gene_biotype seq_coord_system     symbol     entrezid  build
-#&gt; ENSG00000223972   pseudogene       chromosome    DDX11L1 10028759.... GRCh37
-#&gt; ENSG00000227232   pseudogene       chromosome     WASH7P 10028717.... GRCh37
-#&gt; ENSG00000243485      lincRNA       chromosome MIR1302-10 10042291.... GRCh37</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mapped_traits_demo</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                  DOID:12987                   DOID:4306 
+#&gt;           "agranulocytosis"             "radiculopathy" 
+#&gt;                   DOID:2377                   DOID:1414 
+#&gt;        "multiple sclerosis"       "ovarian dysfunction" 
+#&gt;                DOID:0060172                DOID:0060224 
+#&gt; "juvenile absence epilepsy"       "atrial fibrillation" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
