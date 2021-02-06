@@ -49,18 +49,24 @@ library(gwaslake)
 library(plotly)
 library(ieugwasr)
 library(dplyr)
+library(tibble)
 library(DT)
+library(ontoProc)
 })
 ls("package:ieugwasr")
 ```
 
 The pkgdown site for `ieugwasr` includes a reference listing, visible [here](https://mrcieu.github.io/ieugwasr/reference/index.html).
 
-Let's try the gwasinfo command.  
-
-```{r lkgwinf}
+The gwasinfo command makes an API call to the MRC ecosystem.
+```{r lkgwinf, eval=FALSE}
 gwi = gwasinfo()
-gwi
+```
+However, we don't want to do this too often, so we've made a snapshot and keep it
+in the package.
+```{r lksnap}
+gwi = gwidf_2021_01_30
+as_tibble(gwi)
 ```
 
 That's a huge table.  We can get an overview by tabulating the 'batches' into which
@@ -140,5 +146,49 @@ table(eqtab$gchrom)
 ```
 
 So there are 'trans' hits for our GSDMB-resident asthma SNP.
+
+# Extending the available data
+
+## Ontological tagging of trait terms
+
+### Introduction to Disease Ontology
+
+An ontology is a structured vocabulary, and relationships
+among terms specified in a directed acyclic graph.
+[Disease Ontology](https://disease-ontology.org/)(DO) is an
+example related to systematic naming of human diseases.
+
+Here is small illustration of the idea.
+```{r lksimpo, out.width="150%"}
+library(ontoProc)
+DO = getDiseaseOnto() # snapshot
+dem = c("DOID:4", "DOID:7", "DOID:74")
+kids = lapply(dem, function(x) DO$children[x][[1]])
+onto_plot2(DO, tail(unlist(kids),12))
+```
+
+The formalization of relationships among diseases, as encoded
+in DO, may be useful in investigations of etiology.  The use
+of formal terms and fixed-length tags will be useful for 
+combining information from independently conducted investigations.
+
+"Traits" studied in the MRC GWAS ecosystem are only infrequently
+named using formal ontological terms.  Simple code to
+match trait terms with DO terms is
+
+```{r domap}
+traits = gwidf_2021_01_30$trait
+indo = intersect(tolower(traits), tolower(DO$name))
+inds = match(indo, tolower(DO$name))
+mapped_traits = DO$name[inds]
+indo[1:4] # in MRC GWAS
+mapped_traits[1:4] # in DO
+length(mapped_traits)
+```
+
+It will be possible to map even more traits once more careful textual
+analysis is performed on the `traits` vector.  For example,
+one study uses `Diagnoses - main ICD10: K50 Crohn's disease [regional enteritis]`
+to name its trait.  The code given above will not find this.
 
 

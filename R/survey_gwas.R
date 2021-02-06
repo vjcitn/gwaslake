@@ -1,5 +1,5 @@
 #' plot sample size and other information about studies in IEU GWAS ecosystem
-#' @import ggplot2
+#' @rawNamespace import(ggplot2, except=last_plot)
 #' @param phrases character() vector to grep with ignore.case=TRUE in `trait` field, unique matching rows
 #' will be collected
 #' @param datasource data.frame with `trait` as a column, defaults to 
@@ -35,4 +35,50 @@ survey_gwas = function(phrases, datasource=gwaslake::gwidf_2021_01_30, title_pre
                              ifelse(length(title_text)>1, ", ", ""), sep=""), "]", sep="")
   ggplot(newdf, aes(x=ncont, y=ncase, text=tag)) + 
          geom_point() + ggtitle(paste(title_pref, title_text)) + ggplot2::xlab(xlab) + ggplot2::ylab(ylab)
+}
+
+
+hitco = function(phrases="asthma", datasource=gwidf_2021_01_30, ...) {
+ hits = lapply(phrases, function(x) grep(paste0("^", x, "$"), tolower(datasource$trait), ...))
+ stopifnot(length(hits)>0)
+ tmp = datasource[unique(unlist(hits)),]
+ studs = unique(tmp$id)
+ do.call(rbind, lapply(studs, tophits))
+}
+
+
+#' simple app to help survey diverse phenotypes
+#' @rawNamespace import(shiny, except=c(dataTableOutput, renderDataTable))
+#' @import plotly
+#' @export
+survey_app = function() {
+ ui = fluidPage(
+  sidebarLayout(
+   sidebarPanel(
+    helpText("gwaslake survey app"),
+    helpText("Note: until further notice, results of this app are limited to those studies with traits mapping exactly to Disease Ontology terms."),
+    helpText("Direct use of ieugwasr can lead to many more relevant studies."),
+    selectInput("pheno", "pheno", choices=sort(as.character(mapped_traits_demo)))
+   ),
+   mainPanel(
+    tabsetPanel(
+     tabPanel("survey",
+      plotlyOutput("surv")
+     ),
+     tabPanel("top hits",
+      dataTableOutput("hittab")
+     )
+    )
+   )
+  )
+ )
+ server = function(input, output) {
+  output$surv = renderPlotly({
+   ggplotly(survey_gwas(input$pheno))
+  })
+  output$hittab = renderDataTable({
+   as.data.frame(hitco(phrases=input$pheno))
+  })
+ }
+ runApp(list(ui=ui, server=server))
 }

@@ -28,3 +28,11 @@
 #' # batchcode = sapply(batchcode,function(x) paste0(x[1], "-", x[2]))
 #' head(gwidf_2021_01_30)
 "gwidf_2021_01_30"
+
+#' a subset of trait labels mapped to Disease Ontology
+#' @docType data
+#' @format named character vector
+#' @note Uses ontoProc from Bioc 3.12.
+#' @examples
+#' head(mapped_traits_demo)
+"mapped_traits_demo"
