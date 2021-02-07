@@ -1,4 +1,4 @@
-FROM vjcitn/bioc_staged_rel:0.0.2
+FROM vjcitn/bioc_staged_312:0.0.3
 
 WORKDIR /home/rstudio
 

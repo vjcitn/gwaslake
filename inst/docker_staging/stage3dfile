@@ -1,0 +1,15 @@
+
+FROM vjcitn/bioc_staged_rel:0.0.2
+
+WORKDIR /home/rstudio
+
+COPY --chown=rstudio:rstudio . /home/rstudio/
+
+RUN Rscript -e 'BiocManager::install(c("cran/ontologyPlot"), ask=FALSE, update=FALSE); BiocManager::install( c("bslib", "cachem", "coloc", "fastmap", "gargle", "genetics.binaRies", "googleAuthR", "graph", "httpuv", "igraph", "jquerylib", "ontologyIndex", "ontoProc", "paintmap", "Rgraphviz", "sass", "shiny", "shinytoastr", "sourcetools", "VariantAnnotation", "xtable"), Ncpus=2, ask=FALSE, update=TRUE)'
+
+#  BiocManager::install(c(
+#    "biomaRt", "broom", "cli", "cpp11", "crayon", "dbplyr", "DelayedArray",
+#    "dplyr", "DT", "forcats", "gh", "git2r", "htmltools", "knitr",
+#    "MatrixGenerics", "matrixStats", "memoise", "meta", "quantreg", "rappdirs",
+#    "RSQLite", "systemfonts", "tibble", "tinytex", "usethis", "withr"
+#  )

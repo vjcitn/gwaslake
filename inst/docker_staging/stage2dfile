@@ -1,0 +1,9 @@
+
+FROM vjcitn/bioc_staged_rel:0.0.1
+
+WORKDIR /home/rstudio
+
+COPY --chown=rstudio:rstudio . /home/rstudio/
+
+RUN Rscript -e 'BiocManager::install( c("RcppEigen", "statmod", "nloptr", "minqa", "rematch", "cellranger", "zip", "readr", "forcats", "openxlsx", "readxl", "haven", "sp", "backports", "numDeriv", "broom", "lme4", "tmvnsim", "CompQuadForm", "metafor", "rio", "maptools", "pbkrtest", "abind", "carData", "mnormt", "meta", "randomForest", "car", "psych", "reshape2", "cowplot", "gridExtra"), Ncpus=2, ask=FALSE, update=FALSE)'
+
