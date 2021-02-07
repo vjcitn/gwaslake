@@ -9,3 +9,6 @@ survey_app()
 \description{
 simple app to help survey diverse phenotypes
 }
+\note{
+Will try to find hits at 1e-8, if none, increases to 1e-6.
+}

@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor
-Version: 0.0.14
+Version: 0.0.15
 Authors@R: 
     person(given = "Vince",
            family = "Carey",
@@ -39,7 +39,8 @@ Imports:
     ieugwasr,
     shiny,
     ggplot2,
-    plotly
+    plotly,
+    shinytoastr
 Remotes:
     mrcieu/ieugwasr,
     vjcitn/gwasvcf,

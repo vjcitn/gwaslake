@@ -43,27 +43,33 @@ survey_gwas = function(phrases, datasource=gwaslake::gwidf_2021_01_30, title_pre
 }
 
 
-hitco = function(phrases="asthma", datasource=gwidf_2021_01_30, ...) {
+hitco = function(phrases="asthma", datasource=gwidf_2021_01_30, thresh=5e-8, ...) {
  hits = lapply(phrases, function(x) grep(paste0("^", x, "$"), tolower(datasource$trait), ...))
  stopifnot(length(hits)>0)
  tmp = datasource[unique(unlist(hits)),]
  studs = unique(tmp$id)
- do.call(rbind, lapply(studs, tophits))
+ do.call(rbind, lapply(studs, function(x) ieugwasr::tophits(x, pval=thresh)))
 }
+
+wr_snp = function(x)
+  sprintf("<a href='https://www.ncbi.nlm.nih.gov/snp/%s' target='_blank'>%s</a>", x, x)
 
 
 #' simple app to help survey diverse phenotypes
 #' @rawNamespace import(shiny, except=c(dataTableOutput, renderDataTable))
 #' @import plotly
+#' @importFrom shinytoastr useToastr toastr_info
+#' @note Will try to find hits at 1e-8, if none, increases to 1e-6.
 #' @export
 survey_app = function() {
  ui = fluidPage(
+  shinytoastr::useToastr(),
   sidebarLayout(
    sidebarPanel(
     helpText("gwaslake survey app"),
     helpText("Note: until further notice, results of this app are limited to those studies with traits mapping exactly to Disease Ontology terms."),
     helpText("Direct use of ieugwasr can lead to many more relevant studies."),
-    selectInput("pheno", "pheno", choices=sort(as.character(mapped_traits_demo)))
+    selectInput("pheno", "pheno", choices=sort(as.character(mapped_traits_demo))), width=2
    ),
    mainPanel(
     tabsetPanel(
@@ -71,6 +77,7 @@ survey_app = function() {
       plotlyOutput("surv")
      ),
      tabPanel("top hits",
+      verbatimTextOutput("txt"),
       dataTableOutput("hittab")
      )
     )
@@ -78,12 +85,24 @@ survey_app = function() {
   )
  )
  server = function(input, output) {
+  output$txt = renderPrint({
+   paste("Current phenotype for table:", input$pheno)
+   })
   output$surv = renderPlotly({
    ggplotly(survey_gwas(input$pheno))
   })
   output$hittab = renderDataTable({
-   as.data.frame(hitco(phrases=input$pheno))
+   toastr_info("issuing API calls for top hits")
+   dat = as.data.frame(hitco(phrases=input$pheno))
+   if (nrow(dat)==0) {
+      toastr_info("increasing p-val threshold to 1e-6")
+      dat = as.data.frame(hitco(phrases=input$pheno, thresh=1e-6))
+      }
+   validate(need(nrow(dat)>0, "no hits at 1e-6, please try another trait."))
+   dat$rsid = wr_snp(dat$rsid)
+   DT::datatable(dat, escape=FALSE)
   })
  }
  runApp(list(ui=ui, server=server))
 }
+
