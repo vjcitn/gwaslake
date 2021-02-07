@@ -106,6 +106,11 @@ we get an interactive graphic with additional data displayed on hover.
 ggplotly(survey_gwas(phrases=c("asthma", "asthmatic")))
 ```
 
+The `survey_app` function returns a display like the above, and
+an interactive table of 'top hits'.
+
+![top hits](tophits.png)
+
 ## GWAS hits and their annotation
 
 The [pkgdown document](https://mrcieu.github.io/ieugwasr/articles/guide.html) 
@@ -147,7 +152,7 @@ table(eqtab$gchrom)
 
 So there are 'trans' hits for our GSDMB-resident asthma SNP.
 
-# Extending the available data
+# Extending the available facilities
 
 ## Ontological tagging of trait terms
 
@@ -172,6 +177,8 @@ in DO, may be useful in investigations of etiology.  The use
 of formal terms and fixed-length tags will be useful for 
 combining information from independently conducted investigations.
 
+### Using Disease Ontology to tag MRC GWAS trait terms
+
 "Traits" studied in the MRC GWAS ecosystem are only infrequently
 named using formal ontological terms.  Simple code to
 match trait terms with DO terms is
@@ -191,4 +198,18 @@ analysis is performed on the `traits` vector.  For example,
 one study uses `Diagnoses - main ICD10: K50 Crohn's disease [regional enteritis]`
 to name its trait.  The code given above will not find this.
 
+## Manhattan plots
 
+The `associations` function of `ieugwasr` produces a filtered set
+of hits for a given region in a given study.  The `manhattanPlot` function
+of gwaslake simplifies this to some extent, and provides a visualization.
+One can specify a gene symbol and a flanking radius in base pairs,
+but one still needs to know the ieugwasr `id` of the study of interest.
+
+```{r domanh}
+manhattanPlot(studyID="ubm-a-524", symbol = "BCAN", radius=500000)
+```
+
+As the tagging of phenotypes improves, this facility will evolve
+to permit more flexible selection of studies and loci to retrieve
+and visualize.

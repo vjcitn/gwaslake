@@ -18,11 +18,12 @@ strsplitter = function(x) {
 #' @param stop chromosomal address to end region (will have radius added if supplied)
 #' @param chromosome name of chromosome in Ensembl nomenclature (e.g., 1, 2, ...)
 #' @param radius numeric default to zero, specifies flanking region
+#' @param datasource data.frame that includes study identifier `id` and `trait` for labeling
 #' @examples
 #' manhattanPlot(radius=500000)
 #' @export
 manhattanPlot = function (studyID="ubm-a-524", symbol = "BCAN", start = NULL, stop = NULL, 
-    chromosome = NULL, radius=0) 
+    chromosome = NULL, radius=0, datasource=gwidf_2021_01_30) 
 {
     if (is.character(symbol)) {
         cur = strsplitter(genesym_to_string(symbol))
@@ -35,5 +36,6 @@ manhattanPlot = function (studyID="ubm-a-524", symbol = "BCAN", start = NULL, st
     location = paste(as.character(chromosome), paste(as.character(as.numeric(start)-radius), 
         as.character(as.numeric(stop)+radius), sep = "-"), sep = ":")
     mplot = ieugwasr::associations(location, studyID)
-    ggplot2::ggplot(mplot, ggplot2::aes(x = position, y = -log10(p))) + ggplot2::geom_point()
+    tr = datasource[which(datasource$id == studyID), "trait"][1]
+    ggplot2::ggplot(mplot, ggplot2::aes(x = position, y = -log10(p))) + ggplot2::geom_point() + ggtitle(tr)
 }

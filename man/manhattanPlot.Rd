@@ -10,7 +10,8 @@ manhattanPlot(
   start = NULL,
   stop = NULL,
   chromosome = NULL,
-  radius = 0
+  radius = 0,
+  datasource = gwidf_2021_01_30
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ a study described in Elliott et al Nature October 2018}
 \item{chromosome}{name of chromosome in Ensembl nomenclature (e.g., 1, 2, ...)}
 
 \item{radius}{numeric default to zero, specifies flanking region}
+
+\item{datasource}{data.frame that includes study identifier \code{id} and \code{trait} for labeling}
 }
 \description{
 produce a manhattan plot for a given study, based on specific coordinates or gene symbol with radius for flanking region
