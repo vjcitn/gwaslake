@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gwaslake</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.17</span>
       </span>
     </div>
 
@@ -126,7 +126,8 @@
   start <span class='op'>=</span> <span class='cn'>NULL</span>,
   stop <span class='op'>=</span> <span class='cn'>NULL</span>,
   chromosome <span class='op'>=</span> <span class='cn'>NULL</span>,
-  radius <span class='op'>=</span> <span class='fl'>0</span>
+  radius <span class='op'>=</span> <span class='fl'>0</span>,
+  datasource <span class='op'>=</span> <span class='va'>gwidf_2021_01_30</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -156,6 +157,10 @@ a study described in Elliott et al Nature October 2018</p></td>
     <tr>
       <th>radius</th>
       <td><p>numeric default to zero, specifies flanking region</p></td>
+    </tr>
+    <tr>
+      <th>datasource</th>
+      <td><p>data.frame that includes study identifier <code>id</code> and <code>trait</code> for labeling</p></td>
     </tr>
     </table>
 
