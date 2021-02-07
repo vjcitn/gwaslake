@@ -9,7 +9,10 @@
 #' @param xlab character(1) x axis label defaults to "N controls"
 #' @param ylab character(1) x axis label defaults to "N cases"
 #' @param \dots passed to grep
-#' @note returns ggplot, intended for ggplotly
+#' @note Returns ggplot, intended for ggplotly.  When used with ggplotly, hover over points to get
+#' details such as exact definition of trait, study ID, PMID if available.  
+#' For some phenotypes, numbers of cases or controls are unavailable.
+#' If this occurs for all studies assessing the selected phenotypes, an error is thrown.
 #' @examples
 #' requireNamespace("ggplot2")
 #' sg = survey_gwas(c("asthma", "asthmatic")) + 
@@ -24,6 +27,8 @@ survey_gwas = function(phrases, datasource=gwaslake::gwidf_2021_01_30, title_pre
   hits = lapply(phrases, function(x) grep(x, datasource$trait, ignore.case=TRUE, ...))
   stopifnot(length(hits)>0)
   hits = datasource[unique(unlist(hits)),]
+  ncas = hits$ncase
+  if (all(is.na(ncas))) stop("no non-missing case counts present")
   newdf = data.frame(ncont=hits$ncontrol, 
           ncase=hits$ncase, 
           id=hits$id, year = hits$year, 

@@ -35,7 +35,10 @@ gwaslake::gwidf_2021_01_30; result of ieugwasr::gwasinfo() is intended input}
 plot sample size and other information about studies in IEU GWAS ecosystem
 }
 \note{
-returns ggplot, intended for ggplotly
+Returns ggplot, intended for ggplotly.  When used with ggplotly, hover over points to get
+details such as exact definition of trait, study ID, PMID if available.
+For some phenotypes, numbers of cases or controls are unavailable.
+If this occurs for all studies assessing the selected phenotypes, an error is thrown.
 }
 \examples{
 requireNamespace("ggplot2")
