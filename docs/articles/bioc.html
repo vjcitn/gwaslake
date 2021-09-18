@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gwaslake</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.20</span>
       </span>
     </div>
 
@@ -235,6 +235,78 @@ vignette, available at
 https://bioconductor.org/packages/3.14/bioc/vignettes/BiocCheck/inst/doc/BiocCheck.html#interpreting-bioccheck-output
 BiocCheck FAILED.</code></pre>
 </div>
+</div>
+<div id="gwasvcf" class="section level2">
+<h2 class="hasAnchor">
+<a href="#gwasvcf" class="anchor"></a>gwasvcf</h2>
+<ul>
+<li>R CMD check is not completely clean</li>
+</ul>
+<pre><code>* checking dependencies in R code ... WARNING
+Namespaces in Imports field not imported from:
+  ‘Rhtslib’ ‘coloc’ ‘jsonlite’ ‘methods’ ‘testthat’ ‘tidyr’
+  All declared Imports should be used.</code></pre>
+<ul>
+<li>BiocCheck highlights</li>
+</ul>
+<pre><code>* Checking coding practice...
+    * NOTE: Avoid sapply(); use vapply()
+      Found in files:
+        binaries.r (line 20, column 26)
+        binaries.r (line 49, column 26)
+        query.r (line 149, column 18)
+        query.r (line 150, column 16)
+        query.r (line 155, column 20)
+        query.r (line 156, column 20)
+    * NOTE: Avoid 1:...; use seq_len() or seq_along()
+      Found in files:
+        manipulate.r (line 98, column 26)
+        manipulate.r (line 213, column 35)
+        query.r (line 393, column 53)
+    * WARNING: Avoid T/F variables; If logical, use TRUE/FALSE (found
+      15 times)
+        F in R/proxy.r (line 28, column 92)
+        F in R/proxy.r (line 28, column 99)
+        F in R/proxy.r (line 28, column 105)
+        F in R/query.r (line 338, column 76)
+        F in R/query.r (line 338, column 83)
+        F in R/query.r (line 338, column 89)
+        F in R/query.r (line 393, column 103)
+        F in R/query.r (line 393, column 110)
+        F in R/query.r (line 393, column 116)
+        F in R/rsid_index.r (line 22, column 62)
+        F in R/rsid_index.r (line 22, column 69)
+        F in R/rsid_index.r (line 22, column 75)
+        F in R/rsid_index.r (line 96, column 71)
+        F in R/rsid_index.r (line 96, column 78)
+        F in R/rsid_index.r (line 96, column 84)
+    * WARNING: Avoid class membership checks with class() / is() and ==
+      / !=; Use is(x, 'class') for S4 classes
+      Found in files:
+        manipulate.r (line 225, column 37)
+    * ERROR: Avoid references to external hosting platforms
+      Found in files:
+        binaries.r (line 78, column 30)
+        binaries.r (line 105, column 30)</code></pre>
+<pre><code>* Checking man page documentation...
+    * WARNING: Add non-empty \value sections to the following man
+      pages: man/create_ldref_sqlite.Rd,
+      man/create_rsidx_index_from_vcf.Rd, man/pipe.Rd
+    * ERROR: At least 80% of man pages documenting exported objects
+      must have runnable examples. The following pages do not:
+      check_bcftools.Rd, check_plink.Rd, create_ldref_sqlite.Rd,
+  create_rsidx_index_from_vcf.Rd, create_rsidx_sub_index.Rd,
+  create_vcf.Rd, get_ld_proxies.Rd, merge_vcf.Rd, parse_chrompos.Rd,
+  pipe.Rd, proxy_match.Rd, query_chrompos_bcftools.Rd,
+  query_chrompos_file.Rd, query_chrompos_vcf.Rd, query_gwas.Rd,
+  query_pval_bcftools.Rd, query_pval_file.Rd, query_pval_vcf.Rd,
+  query_rsid_bcftools.Rd, query_rsid_file.Rd, query_rsid_rsidx.Rd,
+  query_rsid_vcf.Rd, query_rsidx.Rd, set_bcftools.Rd, set_plink.Rd,
+  sqlite_ld_proxies.Rd, vcf_to_granges.Rd, vcf_to_tibble.Rd,
+  vcflist_overlaps.Rd
+* Checking package NEWS...
+    * NOTE: Consider adding a NEWS file, so your package news will be
+      included in Bioconductor release announcements.</code></pre>
 </div>
 </div>
   </div>
