@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor
-Version: 0.0.19
+Version: 0.0.20
 Authors@R: 
     person(given = "Vince",
            family = "Carey",

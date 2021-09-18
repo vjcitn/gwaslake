@@ -1,0 +1,158 @@
+---
+title: "bioc_ogw: connecting MRCIEU R packages to Bioconductor"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{"bioc_ogw: connecting MRCIEU R packages to Bioconductor"}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# Introduction
+
+
+This vignette discusses processes that can be undertaken to bring
+MRCIEU packages into the Bioconductor ecosystem.
+
+# General guidelines
+
+The Bioconductor website pages for [package submission](https://bioconductor.org/developers/package-submission/)
+provide full details.  
+
+## Initiate the submission with an issue
+
+> Submit by opening a new issue in the [Bioconductor Contributions](https://github.com/Bioconductor/Contributions) repository, following the guidelines of the [README.md](https://github.com/Bioconductor/Contributions#table-of-contents) file. Assuming that your package is in a GitHub Repository and under the default branch, add the link to your repository to the issue you are opening. You cannot specify any alternative branches; the default branch is utilized. The default branch must contain only package code. Any files or directories for other applications (Github Actions, devtool, etc) should be in a different branch.
+
+## Follow the QC/review process
+
+> The package will be submitted to the Bioconductor build system (BBS). The system will check out your package from GitHub. It will then run R CMD build to create a ‘tarball’ of your source code, vignettes, and man pages. It will run R CMD check on the tarball, to ensure that the package conforms to standard R programming best practices. Bioconductor has chosen to utilize a custom R CMD check environment; See R CMD check environment for more details. Finally, the build system will run BiocCheckGitClone() and BiocCheck() to ensure that the package conforms to Bioconductor BiocCheck standards. The system will perform these steps using the ‘devel’ version of Bioconductor, on three platforms (Linux, Mac OS X, and Windows). After these steps are complete, a link to a build report will be appended to the new package issue. Avoid surprises by running these checks on your own computer, under the ‘devel’ version of Bioconductor, before submitting your package.
+
+# Specifics
+
+For submission to Bioconductor 3.14, it would be good to start a submission
+in September.  We use R 4.1.1 with `BiocManager::version()` returning '3.14' and
+BiocManager::valid() returning 'TRUE'.
+
+## `ieugwasr`
+
+### R CMD check
+
+R CMD check is clean.
+
+### BiocCheck
+
+As of Sept 18, there is a bug in BiocCheck, a key QC component for the submission
+process.  For now I am using the vjcitn-patch-1 branch of BiocCheck at github.com/vjcitn/BiocCheck.
+
+- DESCRIPTION file must contain field biocViews: and have an entry such as Genetics.
+- Vignette code chunks should illustrate package activity.  Since the most important
+tasks involve queries to the OpenGWAS server we need to decide whether these
+are very likely to succeed whenever build system checks package, or are too risky,
+in which case "mock" outputs of the server are stored in the package for testing.
+
+My sense is that the server is reliable enough to use directly in the vignette.
+Thus this WARNING should be solved, and the following NOTE:
+```
+    * WARNING: Evaluate more vignette chunks.
+        # of code chunks: 40
+        # of eval=FALSE: 0
+        # of nonexecutable code chunks by syntax: 29
+        # total unevaluated 29 (72%)
+    * NOTE: 'sessionInfo' not found in vignette(s)
+      Missing from file(s):
+        vignettes/guide.Rmd
+        vignettes/local_ld.Rmd
+        vignettes/timings.Rmd
+```
+
+- It is good form to solve:
+```
+* Checking coding practice...
+    * NOTE: Avoid sapply(); use vapply()
+      Found in files:
+        afl2.r (line 88, column 16)
+        query.R (line 188, column 9)
+    * NOTE: Avoid 1:...; use seq_len() or seq_along()
+      Found in files:
+        backwards.R (line 16, column 18)
+        ld_clump.R (line 58, column 18)
+        ld_clump.R (line 154, column 27)
+        ld_clump.R (line 155, column 19)
+        variants.R (line 17, column 18)
+        zzz.R (line 20, column 41)
+    * NOTE: Avoid redundant 'stop' and 'warn*' in signal conditions
+      Found in files:
+        /Users/vincentcarey/MRCIEU/ieugwasr/R/query.R (line 87, column
+      25)
+        /Users/vincentcarey/MRCIEU/ieugwasr/R/query.R (line 88, column
+      25)
+        /Users/vincentcarey/MRCIEU/ieugwasr/R/query.R (line 95, column
+      30)
+        /Users/vincentcarey/MRCIEU/ieugwasr/R/query.R (line 97, column
+      30)
+    * WARNING: Avoid T/F variables; If logical, use TRUE/FALSE (found 8
+      times)
+        T in R/ld_clump.R (line 130, column 101)
+        T in R/ld_clump.R (line 142, column 65)
+        F in R/ld_clump.R (line 130, column 88)
+        F in R/ld_clump.R (line 130, column 110)
+        F in R/ld_matrix.R (line 82, column 62)
+        F in R/ld_matrix.R (line 82, column 75)
+        F in R/ld_matrix.R (line 82, column 84)
+        T in R/zzz.R (line 20, column 79)
+    * WARNING: Avoid class membership checks with class() / is() and ==
+      / !=; Use is(x, 'class') for S4 classes
+      Found in files:
+        afl2.r (line 38, column 23)
+        afl2.r (line 58, column 23)
+        query.R (line 231, column 23)
+        query.R (line 298, column 23)
+        query.R (line 351, column 23)
+        variants.R (line 21, column 29)
+```
+
+- This might indicate a value to consolidating some of the man pages
+for related functions:
+```
+* Checking man page documentation...
+    * WARNING: Add non-empty \value sections to the following man
+      pages: man/ld_clump_api.Rd, man/logging_info.Rd, man/pipe.Rd,
+      man/revoke_access_token.Rd, man/select_api.Rd
+    * ERROR: At least 80% of man pages documenting exported objects
+      must have runnable examples. The following pages do not:
+      afl2_chrpos.Rd, afl2_list.Rd, afl2_rsid.Rd, api_query.Rd,
+  api_status.Rd, associations.Rd, batch_from_id.Rd, batches.Rd,
+  check_access_token.Rd, cor.Rd, editcheck.Rd, fill_n.Rd,
+  get_access_token.Rd, get_query_content.Rd, gwasinfo.Rd,
+  infer_ancestry.Rd, ld_clump_local.Rd, ld_clump.Rd,
+  ld_matrix_local.Rd, ld_matrix.Rd, ld_reflookup.Rd, legacy_ids.Rd,
+  logging_info.Rd, phewas.Rd, pipe.Rd, revoke_access_token.Rd,
+  select_api.Rd, tophits.Rd, variants_chrpos.Rd, variants_gene.Rd,
+  variants_rsid.Rd, variants_to_rsid.Rd
+```
+
+- The guidelines should indicate how to solve
+
+```
+* Checking for support site registration...
+    Maintainer is registered at support site.
+    * ERROR: Maintainer must add package name to Watched Tags on the
+      support site; Edit your Support Site User Profile to add Watched
+      Tags.
+
+
+Summary:
+ERROR count: 3
+WARNING count: 6
+NOTE count: 12
+For detailed information about these checks, see the BiocCheck
+vignette, available at
+https://bioconductor.org/packages/3.14/bioc/vignettes/BiocCheck/inst/doc/BiocCheck.html#interpreting-bioccheck-output
+BiocCheck FAILED.
+```

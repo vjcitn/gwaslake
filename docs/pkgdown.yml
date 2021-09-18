@@ -1,0 +1,12 @@
+pandoc: '2.13'
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  bioc: bioc.html
+  gwaslake: gwaslake.html
+  workshop: workshop.html
+last_built: 2021-09-18T10:48Z
+urls:
+  reference: https://vjcitn.github.io/gwaslake/reference
+  article: https://vjcitn.github.io/gwaslake/articles
+
