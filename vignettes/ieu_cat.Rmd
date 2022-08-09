@@ -1,0 +1,71 @@
+---
+title: "Combining Open GWAS and EBI GWAS catalog information"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Combining Open GWAS and EBI GWAS catalog information}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+```{r setup,echo=FALSE,results="hide"}
+suppressMessages({
+suppressPackageStartupMessages({
+library(gwaslake)
+library(dplyr)
+library(DT)
+})
+})
+```
+
+# Aim
+
+Our aim here is to improve curation of Open GWAS records by coupling
+to the EBI GWAS catalog.
+
+Here are previews of `gwinf` (Open GWAS) and `ebi` (EBI catalog)
+resources.
+```{r lkinfo, cache=TRUE}
+library(ieugwasr) # from github mrcieu
+library(gwascat)
+gwinf = gwasinfo()
+gwinf
+ebi = get_cached_gwascat()
+ebi
+```
+
+# Data filtering and merging
+
+## Confine `gwinf` to records with accession numbers
+
+We'll likely only gain information for records with GCST (study accession)
+tags.
+```{r filter1}
+gwinf = gwinf[grep("GCST", gwinf$id),]
+dim(gwinf)
+gwinf$acc = gsub("ebi-..", "", gwinf$id)
+```
+
+## Filter the EBI catalog to studies
+
+The EBI catalog has locus-specific records; we are interested in
+studies.
+
+```{r reduce}
+ebi = ebi[-which(duplicated(ebi$`STUDY ACCESSION`)),]
+```
+
+## Merge and inspect
+
+```{r merge}
+nn = inner_join(mutate(ebi, acc=`STUDY ACCESSION`), gwinf, by="acc")
+dim(nn)
+library(DT)
+datatable(nn)
+```

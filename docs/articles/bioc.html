@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gwaslake</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.20</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.23</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/gwaslake.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -60,6 +56,9 @@
       <a href="../articles/bioc.html">bioc_ogw: connecting MRCIEU R packages to Bioconductor</a>
     </li>
     <li>
+      <a href="../articles/ieu_cat.html">Combining Open GWAS and EBI GWAS catalog information</a>
+    </li>
+    <li>
       <a href="../articles/workshop.html">gwaslake workshop, Bioc 2021</a>
     </li>
   </ul>
@@ -67,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/vjcitn/gwaslake">
+  <a href="https://github.com/vjcitn/gwaslake" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -82,61 +81,61 @@
 
       
 
-      </header><script src="bioc_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>bioc_ogw: connecting MRCIEU R packages to Bioconductor</h1>
-                        <h4 class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
+                        <h4 data-toc-skip class="author">Vincent J. Carey, stvjc at channing.harvard.edu</h4>
             
-            <h4 class="date">September 18, 2021</h4>
+            <h4 data-toc-skip class="date">August 09, 2022</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/vjcitn/gwaslake/blob/master/vignettes/bioc.Rmd"><code>vignettes/bioc.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/vjcitn/gwaslake/blob/HEAD/vignettes/bioc.Rmd" class="external-link"><code>vignettes/bioc.Rmd</code></a></small>
       <div class="hidden name"><code>bioc.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>This vignette discusses processes that can be undertaken to bring MRCIEU packages into the Bioconductor ecosystem.</p>
 </div>
-<div id="general-guidelines" class="section level1">
-<h1 class="hasAnchor">
-<a href="#general-guidelines" class="anchor"></a>General guidelines</h1>
-<p>The Bioconductor website pages for <a href="https://bioconductor.org/developers/package-submission/">package submission</a> provide full details.</p>
-<div id="initiate-the-submission-with-an-issue" class="section level2">
-<h2 class="hasAnchor">
-<a href="#initiate-the-submission-with-an-issue" class="anchor"></a>Initiate the submission with an issue</h2>
+<div class="section level2">
+<h2 id="general-guidelines">General guidelines<a class="anchor" aria-label="anchor" href="#general-guidelines"></a>
+</h2>
+<p>The Bioconductor website pages for <a href="https://bioconductor.org/developers/package-submission/" class="external-link">package submission</a> provide full details.</p>
+<div class="section level3">
+<h3 id="initiate-the-submission-with-an-issue">Initiate the submission with an issue<a class="anchor" aria-label="anchor" href="#initiate-the-submission-with-an-issue"></a>
+</h3>
 <blockquote>
-<p>Submit by opening a new issue in the <a href="https://github.com/Bioconductor/Contributions">Bioconductor Contributions</a> repository, following the guidelines of the <a href="https://github.com/Bioconductor/Contributions#table-of-contents">README.md</a> file. Assuming that your package is in a GitHub Repository and under the default branch, add the link to your repository to the issue you are opening. You cannot specify any alternative branches; the default branch is utilized. The default branch must contain only package code. Any files or directories for other applications (Github Actions, devtool, etc) should be in a different branch.</p>
+<p>Submit by opening a new issue in the <a href="https://github.com/Bioconductor/Contributions" class="external-link">Bioconductor Contributions</a> repository, following the guidelines of the <a href="https://github.com/Bioconductor/Contributions#table-of-contents" class="external-link">README.md</a> file. Assuming that your package is in a GitHub Repository and under the default branch, add the link to your repository to the issue you are opening. You cannot specify any alternative branches; the default branch is utilized. The default branch must contain only package code. Any files or directories for other applications (Github Actions, devtool, etc) should be in a different branch.</p>
 </blockquote>
 </div>
-<div id="follow-the-qcreview-process" class="section level2">
-<h2 class="hasAnchor">
-<a href="#follow-the-qcreview-process" class="anchor"></a>Follow the QC/review process</h2>
+<div class="section level3">
+<h3 id="follow-the-qcreview-process">Follow the QC/review process<a class="anchor" aria-label="anchor" href="#follow-the-qcreview-process"></a>
+</h3>
 <blockquote>
 <p>The package will be submitted to the Bioconductor build system (BBS). The system will check out your package from GitHub. It will then run R CMD build to create a ‘tarball’ of your source code, vignettes, and man pages. It will run R CMD check on the tarball, to ensure that the package conforms to standard R programming best practices. Bioconductor has chosen to utilize a custom R CMD check environment; See R CMD check environment for more details. Finally, the build system will run BiocCheckGitClone() and BiocCheck() to ensure that the package conforms to Bioconductor BiocCheck standards. The system will perform these steps using the ‘devel’ version of Bioconductor, on three platforms (Linux, Mac OS X, and Windows). After these steps are complete, a link to a build report will be appended to the new package issue. Avoid surprises by running these checks on your own computer, under the ‘devel’ version of Bioconductor, before submitting your package.</p>
 </blockquote>
 </div>
 </div>
-<div id="specifics" class="section level1">
-<h1 class="hasAnchor">
-<a href="#specifics" class="anchor"></a>Specifics</h1>
-<p>For submission to Bioconductor 3.14, it would be good to start a submission in September. We use R 4.1.1 with <code><a href="https://rdrr.io/pkg/BiocManager/man/version.html">BiocManager::version()</a></code> returning ‘3.14’ and BiocManager::valid() returning ‘TRUE’.</p>
-<div id="ieugwasr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ieugwasr" class="anchor"></a><code>ieugwasr</code>
+<div class="section level2">
+<h2 id="specifics">Specifics<a class="anchor" aria-label="anchor" href="#specifics"></a>
 </h2>
-<div id="r-cmd-check" class="section level3">
-<h3 class="hasAnchor">
-<a href="#r-cmd-check" class="anchor"></a>R CMD check</h3>
+<p>For submission to Bioconductor 3.14, it would be good to start a submission in September. We use R 4.1.1 with <code><a href="https://rdrr.io/pkg/BiocManager/man/version.html" class="external-link">BiocManager::version()</a></code> returning ‘3.14’ and BiocManager::valid() returning ‘TRUE’.</p>
+<div class="section level3">
+<h3 id="ieugwasr">
+<code>ieugwasr</code><a class="anchor" aria-label="anchor" href="#ieugwasr"></a>
+</h3>
+<div class="section level4">
+<h4 id="r-cmd-check">R CMD check<a class="anchor" aria-label="anchor" href="#r-cmd-check"></a>
+</h4>
 <p>R CMD check is clean.</p>
 </div>
-<div id="bioccheck" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bioccheck" class="anchor"></a>BiocCheck</h3>
+<div class="section level4">
+<h4 id="bioccheck">BiocCheck<a class="anchor" aria-label="anchor" href="#bioccheck"></a>
+</h4>
 <p>As of Sept 18, there is a bug in BiocCheck, a key QC component for the submission process. For now I am using the vjcitn-patch-1 branch of BiocCheck at github.com/vjcitn/BiocCheck.</p>
 <ul>
 <li>DESCRIPTION file must contain field biocViews: and have an entry such as Genetics.</li>
@@ -236,9 +235,9 @@ https://bioconductor.org/packages/3.14/bioc/vignettes/BiocCheck/inst/doc/BiocChe
 BiocCheck FAILED.</code></pre>
 </div>
 </div>
-<div id="gwasvcf" class="section level2">
-<h2 class="hasAnchor">
-<a href="#gwasvcf" class="anchor"></a>gwasvcf</h2>
+<div class="section level3">
+<h3 id="gwasvcf">gwasvcf<a class="anchor" aria-label="anchor" href="#gwasvcf"></a>
+</h3>
 <ul>
 <li>R CMD check is not completely clean</li>
 </ul>
@@ -322,11 +321,13 @@ Namespaces in Imports field not imported from:
 
 
       <footer><div class="copyright">
-  <p>Developed by Vince Carey.</p>
+  <p></p>
+<p>Developed by Vince Carey.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -334,6 +335,8 @@ Namespaces in Imports field not imported from:
 
   
 
+
+  
 
   </body>
 </html>

@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gwaslake</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.20</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.23</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/gwaslake.html">Get started</a>
 </li>
@@ -51,7 +47,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -61,6 +57,9 @@
       <a href="articles/bioc.html">bioc_ogw: connecting MRCIEU R packages to Bioconductor</a>
     </li>
     <li>
+      <a href="articles/ieu_cat.html">Combining Open GWAS and EBI GWAS catalog information</a>
+    </li>
+    <li>
       <a href="articles/workshop.html">gwaslake workshop, Bioc 2021</a>
     </li>
   </ul>
@@ -68,7 +67,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/vjcitn/gwaslake">
+  <a href="https://github.com/vjcitn/gwaslake" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -85,11 +84,13 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="gwaslake--convenience-containers-and-documents-for-exploring-the-mrc-integrative-epidemiology-unity-gwasglue-ecosystem-for-gwas" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#gwaslake--convenience-containers-and-documents-for-exploring-the-mrc-integrative-epidemiology-unity-gwasglue-ecosystem-for-gwas" class="anchor"></a>gwaslake – convenience containers and documents for exploring the MRC Integrative Epidemiology Unity “gwasglue” ecosystem for GWAS</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="gwaslake--convenience-containers-and-documents-for-exploring-the-mrc-integrative-epidemiology-unity-gwasglue-ecosystem-for-gwas">gwaslake – convenience containers and documents for exploring the MRC Integrative Epidemiology Unity “gwasglue” ecosystem for GWAS<a class="anchor" aria-label="anchor" href="#gwaslake--convenience-containers-and-documents-for-exploring-the-mrc-integrative-epidemiology-unity-gwasglue-ecosystem-for-gwas"></a>
+</h1></div>
 <p>We are indebted to the University of Bristol MRC Integrative Epidemiology Unit for infrastructure underlying this ecosystem:</p>
-<p><img src="https://github.com/vjcitn/gwaslake/raw/master/inst/images/mrcieuglue.png" alt="dockerhub"></p>
+<div class="figure">
+<img src="https://github.com/vjcitn/gwaslake/raw/master/inst/images/mrcieuglue.png" alt=""><p class="caption">dockerhub</p>
+</div>
 <p>This repo includes code for a ‘workshop’ consisting of a docker container and Rmarkdown files that explore the use of this infrastructure. On any internet-connected machine with a docker client, you can use</p>
 <pre><code>docker run -ti -e PASSWORD=abc -p 8787:8787 vjcitn/gwaslake:latest</code></pre>
 <p>to acquire the docker container image and start it up so that it serves Rstudio at port localhost:8787. There will be a vignettes folder in the working directory, and all software necessary to build the vignettes is already installed in the container.</p>
@@ -99,38 +100,50 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/vjcitn/gwaslake/">https://​github.com/​vjcitn/​gwaslake/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/vjcitn/gwaslake/issues/new/choose">https://​github.com/​vjcitn/​gwaslake/​issues/​new/​choose</a>
-</li>
+<li><a href="https://github.com/vjcitn/gwaslake/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/vjcitn/gwaslake/issues/new/choose" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Vince Carey <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4046-0063" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing gwaslake</a></li>
 </ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Vince Carey <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4046-0063" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Vince Carey.</p>
+  <p></p>
+<p>Developed by Vince Carey.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -138,6 +151,8 @@
 
   
 
+
+  
 
   </body>
 </html>

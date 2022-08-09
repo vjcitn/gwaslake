@@ -1,6 +1,6 @@
 Package: gwaslake
 Title: Workshop for exploring MRC IEU GWAS analysis ecosystem with Bioconductor
-Version: 0.0.20
+Version: 0.0.23
 Authors@R: 
     person(given = "Vince",
            family = "Carey",
@@ -13,9 +13,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends: 
-    R (>= 4.0)
+    R (>= 4.0), gwascat(>= 2.29.2), ieugwasr
 Suggests: 
     tibble,
     knitr,
@@ -36,7 +36,6 @@ Suggests:
 Imports:
     DT,
     dplyr,
-    ieugwasr,
     shiny,
     ggplot2,
     plotly,
